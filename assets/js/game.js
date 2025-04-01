@@ -196,6 +196,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         switch(index) {
                             case 0: // Fuel Capacity
                                 spacecraft.fuel = upgrade.getValue(upgrade.level);
+                                if (fuelDiv) {
+                                    fuelDiv.textContent = `Fuel: ${Math.floor(spacecraft.fuel)}`;
+                                }
                                 break;
                             case 1: // Thrust Power
                                 THRUST_POWER = upgrade.getValue(upgrade.level);
@@ -204,6 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 spacecraft.shootCooldown = upgrade.getValue(upgrade.level);
                                 break;
                         }
+                        
+                        // Force a redraw of the store to show updated values
+                        this.draw();
                     }
                 }
             }
