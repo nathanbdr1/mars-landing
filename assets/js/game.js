@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (store) {
                 store.isOpen = false;
                 if (fuelDiv) {
-                    fuelDiv.textContent = `Fuel: ${store.upgrades.fuelCapacity.getValue(store.upgrades.fuelCapacity.level)}`;
+                    fuelDiv.textContent = `Fuel: ${Math.floor(spacecraft.fuel)}`;
                 }
             }
             // Don't reset money or upgrades between attempts
@@ -666,13 +666,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.y = 400;
                 this.velocityY = 0;
                 this.velocityX = 0;
-                this.fuel = store ? store.upgrades.fuelCapacity.getValue(1) : 300; // Add fallback value
+                this.fuel = store ? store.upgrades.fuelCapacity.getValue(store.upgrades.fuelCapacity.level) : 300;
                 this.engineOn = false;
                 this.movingLeft = false;
                 this.movingRight = false;
                 this.visible = true;
                 this.shooting = false;
-                this.shootCooldown = DEFAULT_SHOOT_COOLDOWN;
+                this.shootCooldown = store ? store.upgrades.fireRate.getValue(store.upgrades.fireRate.level) : DEFAULT_SHOOT_COOLDOWN;
                 this.money = 0;
             }
 
